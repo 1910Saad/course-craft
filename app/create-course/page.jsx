@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import React, { useState } from 'react'
 import { HiClipboardDocumentCheck, HiLightBulb, HiMiniSquares2X2 } from "react-icons/hi2";
 import SelectCategory from './_components/SelectCategory';
+import TopicDetails from './_components/TopicDetails';
+import SelectOption from './_components/SelectOption';
 
 function CreateCourse() {
     const StepperOptions = [
@@ -49,7 +51,9 @@ function CreateCourse() {
 
             <div className='px-10 md:px-20 lg:px-44 mt-10'>
                 {/* Component */}
-                <SelectCategory/>
+                {activeIndex==0?<SelectCategory/>:
+                activeIndex==1?<TopicDetails/>:
+                <SelectOption/>}
 
                 {/* Next Previous Button */}
                 <div className='flex justify-between mt-10'>
