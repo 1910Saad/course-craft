@@ -1,10 +1,11 @@
 "use client"
 import { Button } from '@/components/ui/button';
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { HiClipboardDocumentCheck, HiLightBulb, HiMiniSquares2X2 } from "react-icons/hi2";
 import SelectCategory from './_components/SelectCategory';
 import TopicDetails from './_components/TopicDetails';
 import SelectOption from './_components/SelectOption';
+import { UserInputContext } from '../_context/UserInputContext';
 
 function CreateCourse() {
     const StepperOptions = [
@@ -24,8 +25,35 @@ function CreateCourse() {
             icon: <HiClipboardDocumentCheck />,
         }
     ]
+    const {userCourseInput, setUserCourseInput}=useContext(UserInputContext)
+
+    useEffect(()=>{
+        console.log(userCourseInput);
+    },[userCourseInput])
 
     const [activeIndex, setActiveIndex] = useState(0)
+
+    // Used to check next button enable or disabled status
+
+    const checkStatus=()=>{
+        if(userCourseInput?.length==0)
+        {
+            return true;
+        }
+        if(activeIndex==0&&(userCourseInput?.category?.length==0||userCourseInput?.category==undefined))
+        {
+            return true;
+        }
+        if(activeIndex==1&&(userCourseInput?.topic?.length==0||userCourseInput?.topic==undefined))
+        {
+            return true;
+        }
+        else if(activeIndex==2&&(userCourseInput?.level==undefined||userCourseInput?.duration==undefined||userCourseInput?.video==undefined||userCourseInput?.chapters==undefined))
+        {
+            return true;
+        }
+        return false;
+    }
     return (
         <div>
             {/* Stepper */}
@@ -58,8 +86,8 @@ function CreateCourse() {
                 {/* Next Previous Button */}
                 <div className='flex justify-between mt-10'>
                     <Button disabled={activeIndex == 0} variant='outline' onClick={() => setActiveIndex(activeIndex - 1)}>Previous</Button>
-                    {activeIndex<2&& <Button onClick={() => setActiveIndex(activeIndex + 1)}>Next</Button>}
-                    {activeIndex==2&& <Button onClick={() => setActiveIndex(activeIndex + 1)}>Generate Course Layout</Button>}
+                    {activeIndex<2&& <Button disabled={checkStatus()} onClick={() => setActiveIndex(activeIndex + 1)}>Next</Button>}
+                    {activeIndex==2&& <Button disabled={checkStatus()} onClick={() => setActiveIndex(activeIndex + 1)}>Generate Course Layout</Button>}
                 </div>
             </div>
         </div>
