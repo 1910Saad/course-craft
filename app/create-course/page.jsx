@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import React, { useContext, useEffect, useState } from 'react'
 import { HiClipboardDocumentCheck, HiLightBulb, HiMiniSquares2X2 } from "react-icons/hi2";
@@ -8,8 +9,13 @@ import SelectOption from './_components/SelectOption';
 import { UserInputContext } from '../_context/UserInputContext';
 import { GenerateCourseLayoutAI } from '@/configs/AiModel';
 import LoadingDialog from './_components/LoadingDialog';
+import { CourseList } from '@/configs/schema';
+import uuid4 from 'uuid4';
+import { useUser } from '@clerk/nextjs';
+import {db} from "@/configs/db.jsx";
 
 function CreateCourse() {
+    const router = useRouter()
     const StepperOptions = [
         {
             id: 1,
@@ -34,6 +40,7 @@ function CreateCourse() {
     }, [userCourseInput])
 
     const [activeIndex, setActiveIndex] = useState(0)
+    const {user} = useUser()
 
     // Used to check next button enable or disabled status
 
@@ -63,7 +70,31 @@ function CreateCourse() {
         console.log(result.response?.text());
         console.log(JSON.parse(result.response?.text()))
         setLoading(false)
+        await SaveCourseLayoutInDB(JSON.parse(result.response?.text()))
     }
+
+
+    const SaveCourseLayoutInDB = async (courseLayout) => {
+        var id = uuid4()
+        setLoading(true)
+        const result = await db.insert(CourseList).values({
+            courseId: id,
+            name: userCourseInput?.topic,
+            level: userCourseInput?.level,
+            category: userCourseInput?.category,
+            courseOutput: courseLayout,
+            createdBy: user?.primaryEmailAddress?.emailAddress,
+            userName: user?.fullName,
+            userProfileImage:user?.imageUrl
+        })
+        console.log("finish");
+        setLoading(false)
+        router.replace('/create-course/' + id)
+    }
+
+
+
+
     return (
         <div>
             {/* Stepper */}
