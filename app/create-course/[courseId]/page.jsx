@@ -5,8 +5,9 @@ import { useEffect } from 'react'
 import { useUser } from '@clerk/nextjs'
 import{ and,eq } from "drizzle-orm"
 import { db } from '@/configs/db'
+import { ChapterList,CourseInfo,CourseDetail } from './_components'
 function CourseLayout({params}) {
-    var user = useUser()
+    var {user} = useUser()
     const [course, setCourse] = useState([])
     useEffect(()=>{
         console.log(params.courseId)
@@ -14,11 +15,19 @@ function CourseLayout({params}) {
     },[params])
     const GetCourse = async() =>{
         const result = await db.select().from(CourseList).where(and(eq(CourseList.courseId,params?.courseId),eq(CourseList.createdBy,user?.primaryEmailAddress?.emailAddress)))
+        setCourse(result[0])
         console.log(result)
     }
   return (
-    <div>
-      CourseLayout
+    <div className="mt-10 px-7 md:px-20">
+      <h2 className="font-bold text-center text-2xl lg:px-44">Course Layout</h2>
+      {/* basic info */}
+      <CourseInfo course={course} />
+      {/* course details */}
+      <CourseDetail course={course} />
+      {/* list of chaps */}
+      <ChapterList course={course} />
+
     </div>
   )
 }
