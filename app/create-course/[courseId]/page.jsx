@@ -19,8 +19,8 @@ function CourseLayout({params}) {
         console.log(result)
     }
   return (
-    <div className="mt-10 px-7 md:px-20">
-      <h2 className="font-bold text-center text-2xl lg:px-44">Course Layout</h2>
+    <div className="mt-10 px-7 md:px-20 lg:px-44">
+      <h2 className="font-bold text-center text-2xl">Course Layout</h2>
       {/* basic info */}
       <CourseInfo course={course} />
       {/* course details */}
