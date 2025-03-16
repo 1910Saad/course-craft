@@ -1,4 +1,5 @@
 "use client"
+import { use } from 'react'
 import { CourseList } from '@/configs/schema'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
@@ -22,11 +23,11 @@ function CourseLayout({params}) {
     <div className="mt-10 px-7 md:px-20 lg:px-44">
       <h2 className="font-bold text-center text-2xl">Course Layout</h2>
       {/* basic info */}
-      <CourseInfo course={course} />
+      <CourseInfo course={course} refreshData={()=>GetCourse()}/>
       {/* course details */}
       <CourseDetail course={course} />
       {/* list of chaps */}
-      <ChapterList course={course} />
+      <ChapterList course={course} refreshData={()=>GetCourse()}/>
 
     </div>
   )
