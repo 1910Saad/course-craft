@@ -7,10 +7,11 @@ import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "@/configs/firebaseConfig";
 import { eq } from "drizzle-orm";
 import { CourseList } from "@/configs/schema";
+import { uploadBytes } from "firebase/storage";
 export default function CourseInfo({ course, refreshData }) {
   const [selectedFile, setSelectedFile] = useState();
   const onFileSelected = async (event) => {
-    const file = event.target.file[0];
+    const file = event.target.files[0];
     setSelectedFile(URL.createObjectURL(file));
     const fileName = Date.now() + ".jpg";
     const storageRef = ref(storage, "ai-course/" + fileName);
