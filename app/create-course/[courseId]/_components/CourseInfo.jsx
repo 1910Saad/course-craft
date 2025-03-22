@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { HiOutlinePuzzle } from "react-icons/hi";
 import { Button } from "@/components/ui/button";
@@ -8,8 +8,17 @@ import { storage } from "@/configs/firebaseConfig";
 import { eq } from "drizzle-orm";
 import { CourseList } from "@/configs/schema";
 import { uploadBytes } from "firebase/storage";
+import { db } from "@/configs/db";
 export default function CourseInfo({ course, refreshData }) {
   const [selectedFile, setSelectedFile] = useState();
+
+  useEffect(() => {
+    if (course) {
+      setSelectedFile(course?.courseBannner)
+    }
+  }, [course])
+
+
   const onFileSelected = async (event) => {
     const file = event.target.files[0];
     setSelectedFile(URL.createObjectURL(file));
@@ -54,7 +63,7 @@ export default function CourseInfo({ course, refreshData }) {
         <div>
           <label htmlFor="upload-image">
             <Image
-              src={selectedFile?selectedFile:"/placeholder.jpeg"}
+              src={selectedFile ? selectedFile : "/placeholder.jpeg"}
               width={300}
               height={300}
               className=" w-full rounded-xl h-[250px] object-cover cursor-pointer"
