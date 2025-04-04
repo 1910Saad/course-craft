@@ -37,7 +37,8 @@ function SideBar() {
     const path = usePathname();
     return (
         <div className='fixed h-full md:w-64 p-5 shadow-md'>
-            <Image src={'/next.svg'} alt='logo' width={160} height={100} />
+            {/* <Image src={'/next.svg'} alt='logo' width={160} height={100} /> */}
+            <h1 className='text-primary font-bold'>CourseCraft</h1>
             <hr className='my-5' />
             <ul>
                 {Menu.map((item, index) => (

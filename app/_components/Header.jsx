@@ -5,7 +5,8 @@ import React from 'react'
 function Header() {
   return (
     <div className='flex justify-between p-5 shadow-sm'>
-      <Image src={'/next.svg'} alt='Logo' width={150} height={100} />
+      {/* <Image src={'/next.svg'} alt='Logo' width={150} height={100} /> */}
+      <h1 className='font-bold text-primary'>CourseCraft</h1>
       <Button>Get Started</Button>
     </div>
   )
