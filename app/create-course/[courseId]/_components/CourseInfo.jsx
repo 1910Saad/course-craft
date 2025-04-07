@@ -9,7 +9,7 @@ import { eq } from "drizzle-orm";
 import { CourseList } from "@/configs/schema";
 import { uploadBytes } from "firebase/storage";
 import { db } from "@/configs/db";
-export default function CourseInfo({ course, refreshData }) {
+export default function CourseInfo({ course, refreshData,edit=true }) {
   const [selectedFile, setSelectedFile] = useState();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function CourseInfo({ course, refreshData }) {
           await db
             .update(CourseList)
             .set({
-              courseBannner: downloadUrl,
+              courseBanner: downloadUrl,
             })
             .where(eq(CourseList.id, course?.id));
         });
@@ -68,12 +68,12 @@ export default function CourseInfo({ course, refreshData }) {
               height={300}
               className=" w-full rounded-xl h-[250px] object-cover cursor-pointer"
             />
-            <input
+            {edit&& <input
               type="file"
               id="upload-image"
               className="opacity-0"
               onChange={onFileSelected}
-            />
+            />}
           </label>
         </div>
       </div>
