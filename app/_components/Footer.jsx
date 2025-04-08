@@ -14,12 +14,12 @@ function Footer() {
             path: '/about'
         },
         {
-            id: 1,
+            id: 2,
             name: 'Contact Us',
             path: '/contact'
         },
         {
-            id: 1,
+            id: 3,
             name: 'Terms & Conditions',
             path: '/terms'
         },
@@ -49,14 +49,6 @@ function Footer() {
                     </ul>
 
                     <ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">
-                        <li>
-
-                        </li>
-
-                        <li>
-
-                        </li>
-
                         <li>
                             <a
                                 href="https://twitter.com/saad_khan_04"
