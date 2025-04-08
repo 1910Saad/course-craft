@@ -1,6 +1,6 @@
 import Header from "@/app/_components/Header";
 import Hero from "@/app/_components/Hero";
-import Footer from "./_components/Footer";
+import Footer from "@app/_components/Footer";
 
 export default function Home() {
   return (
