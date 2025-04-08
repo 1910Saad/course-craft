@@ -9,7 +9,8 @@ import { eq } from "drizzle-orm";
 import { CourseList } from "@/configs/schema";
 import { uploadBytes } from "firebase/storage";
 import { db } from "@/configs/db";
-export default function CourseInfo({ course, refreshData,edit=true }) {
+import Link from "next/link";
+export default function CourseInfo({ course, refreshData, edit = true }) {
   const [selectedFile, setSelectedFile] = useState();
 
   useEffect(() => {
@@ -58,7 +59,9 @@ export default function CourseInfo({ course, refreshData,edit=true }) {
           <h2 className="font-medium mt-2 flex gap-2 items-center text-primary">
             <HiOutlinePuzzle /> {course?.category}
           </h2>
-          <Button className="bg-primary text-white w-full mt-5">Start</Button>
+          {!edit&& <Link href={'/course/'+course?.courseId+'/start'}>
+            <Button className="bg-primary text-white w-full mt-5">Start</Button>
+          </Link>}
         </div>
         <div>
           <label htmlFor="upload-image">
@@ -68,7 +71,7 @@ export default function CourseInfo({ course, refreshData,edit=true }) {
               height={300}
               className=" w-full rounded-xl h-[250px] object-cover cursor-pointer"
             />
-            {edit&& <input
+            {edit && <input
               type="file"
               id="upload-image"
               className="opacity-0"
