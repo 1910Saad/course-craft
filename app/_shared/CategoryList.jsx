@@ -12,9 +12,15 @@ export default [
         prompt:''
     },
     {
-        id:1,
+        id:3,
         name:'Creative',
         icon:'/creative.png',
         prompt:''
-    },
+    }
+    // {
+    //     id:4,
+    //     name:'Other',
+    //     icon:'/creative.png',
+    //     prompt:''
+    // },
 ]
