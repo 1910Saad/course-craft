@@ -107,7 +107,7 @@ export default function ChapterList({ course, refreshData, edit=false}) {
 
                 ))}
             </div>
-            {isCourseCompleted && edit && <div className={`flex justify-center items-center mt-10`}>
+            {isCourseCompleted && <div className={`flex justify-center items-center mt-10`}>
                 <Button className='text-lg py-5' onClick={() => router.push(`/certificate/${course.courseId}`)}>Generate Certificate</Button>
             </div>}
         </div>

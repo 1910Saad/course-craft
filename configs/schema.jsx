@@ -27,6 +27,6 @@ export const ChapterProgress = pgTable('chapter_progress', {
   id: serial('id').primaryKey(),
   userId: varchar("user_id", { length: 255 }).notNull(),
   courseId: varchar("course_id", { length: 255 }).notNull(),
-  chapterId: varchar('chapterId').notNull(),
+  chapterId: integer('chapterId').notNull(),
   completed: boolean('completed').default(false)
 });
