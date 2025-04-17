@@ -77,7 +77,7 @@ function CourseLayout({ params }) {
       {/* course details */}
       <CourseDetail course={course} />
       {/* list of chaps */}
-      <ChapterList course={course} refreshData={() => GetCourse()} />
+      <ChapterList course={course}  refreshData={() => GetCourse()} />
 
       <Button onClick={GenerateChapterContent} className='my-10'>Generate Course Content</Button>
 

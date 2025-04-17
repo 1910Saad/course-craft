@@ -36,7 +36,7 @@ function CourseStart({ params }) {
     return (
         <div>
             {/* Chapter List Side bar */}
-            <div className='fixed md:w-64 hidden md:block h-screen border-r shadow-sm'>
+            <div className='fixed md:w-64 hidden md:block h-screen border-r shadow-sm overflow-auto'>
                 <h2 className='font-medium text-lg bg-primary p-4 text-white'>{course?.courseOutput?.CourseName}</h2>
 
                 <div>

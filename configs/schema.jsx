@@ -21,4 +21,12 @@ export const Chapters=pgTable('chapters',{
   chapterId:integer('chapterId').notNull(),
   content:json('content').notNull(),
   videoId:varchar('videoId').notNull()
-})
+});
+
+export const ChapterProgress = pgTable('chapter_progress', {
+  id: serial('id').primaryKey(),
+  userId: varchar("user_id", { length: 255 }).notNull(),
+  courseId: varchar("course_id", { length: 255 }).notNull(),
+  chapterId: integer('chapterId').notNull(),
+  completed: boolean('completed').default(false)
+});

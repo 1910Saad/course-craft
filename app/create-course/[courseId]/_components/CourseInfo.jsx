@@ -15,7 +15,7 @@ export default function CourseInfo({ course, refreshData, edit = true }) {
 
   useEffect(() => {
     if (course) {
-      setSelectedFile(course?.courseBannner)
+      setSelectedFile(course?.courseBanner)
     }
   }, [course])
 
