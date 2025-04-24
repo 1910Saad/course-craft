@@ -6,7 +6,7 @@ import { CourseList } from '@/configs/schema'
 import { eq } from 'drizzle-orm'
 import React, { useEffect, useState } from 'react'
 import { HiOutlineClipboardDocumentCheck, HiOutlineShare } from 'react-icons/hi2';
-
+import Chatbot from '@/app/_components/Chatbot';
 function Course({ params }) {
     const [course, setCourse] = useState([]);
     useEffect(() => {
@@ -64,6 +64,7 @@ function Course({ params }) {
                 <CourseDetail course={course} />
                 <ChapterList course={course} edit={false} />
             </div>
+            <Chatbot />
         </div>
     )
 }

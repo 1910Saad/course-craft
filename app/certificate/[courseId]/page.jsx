@@ -49,7 +49,7 @@ export default function CertificatePage() {
   return (
     <section className="bg-gray-900 lg:grid lg:h-screen lg:place-content-center">
         <Header getstart={false} />
-      <div className="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+      <div className="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-22 lg:px-8 lg:py-30">
         <div className="mx-auto max-w-prose text-center">
           <div className="flex flex-col items-center justify-center p-6">
             <div className="relative w-[560px] h-[400px] " ref={ref}>

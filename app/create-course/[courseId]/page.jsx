@@ -12,6 +12,7 @@ import { GenerateChapterContent_AI } from '@/configs/AiModel'
 import LoadingDialog from '../_components/LoadingDialog'
 import service from '@/configs/service'
 import { useRouter } from 'next/navigation'
+// import Chatbot from '../_components/Chatbot'
 function CourseLayout({ params }) {
   const { user } = useUser();
   const [course, setCourse] = useState([]);
@@ -80,6 +81,7 @@ function CourseLayout({ params }) {
       <ChapterList course={course}  refreshData={() => GetCourse()} />
 
       <Button onClick={GenerateChapterContent} className='my-10'>Generate Course Content</Button>
+      
 
     </div>
   )

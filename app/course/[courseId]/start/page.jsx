@@ -5,7 +5,7 @@ import { and, eq } from 'drizzle-orm'
 import React, { useEffect, useState } from 'react'
 import ChapterListCard from './_components/ChapterListCard'
 import ChapterContent from './_components/ChapterContent'
-
+import Chatbot from '@/app/_components/Chatbot'
 function CourseStart({ params }) {
 
     const [course, setCourse] = useState([]);
@@ -56,6 +56,8 @@ function CourseStart({ params }) {
             <div className='md:ml-64'>
                 <ChapterContent chapter={selectedChapter} content={chapterContent}/>
             </div>
+            {/* Chatbot */}
+            <Chatbot/>
         </div>
     )
 }
