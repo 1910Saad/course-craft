@@ -9,14 +9,14 @@ import { and, eq } from 'drizzle-orm';
 import { useRouter } from 'next/navigation';
 
 
-export default function ChapterList({ course, refreshData, edit=false}) {
+export default function ChapterList({ course, refreshData, edit = false }) {
 
     const [progress, setProgress] = useState([]);
     const { user, isLoaded } = useUser();
     const [isCourseCompleted, setIsCourseCompleted] = useState(false);
 
     const router = useRouter();
-
+    console.log('course', course);
 
 
 
@@ -108,7 +108,18 @@ export default function ChapterList({ course, refreshData, edit=false}) {
                 ))}
             </div>
             {isCourseCompleted && <div className={`flex justify-center items-center mt-10`}>
-                <Button className='text-lg py-5' onClick={() => router.push(`/certificate/${course.courseId}`)}>Generate Certificate</Button>
+                <Button
+                    className="text-lg py-5"
+                    onClick={() => {
+                        const params = new URLSearchParams({
+                            name: user.fullName,
+                            course:course.level+" "+ course.name
+                        });
+                        router.push(`/certificate/${course.courseId}?${params.toString()}`);
+                    }}
+                >
+                    Generate Certificate
+                </Button>
             </div>}
         </div>
     )
